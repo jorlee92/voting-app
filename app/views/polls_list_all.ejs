@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List of All polls</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body class = "container">
+        <body class = "container">
+            <h1 class = "jumbotron"> Recently created Polls </h1>
+            <div class = "row">
+                <div class = "col-4"><h4>Username</h4> </div>
+                <div class = "col-4"><h4>Title</h4></div>
+
+            </div>
+                        <hr/>
+        
+            <% polls.forEach(function(poll){ %>
+            
+                <div class = "row">
+                <div class= "col-4"><%= poll.ownerName %></div>
+                <div class= "col-4"><%= poll.name  %></div>
+                
+                <a class = "btn btn-primary" href="/polls/<%= poll._id %> ">Click here to Vote</a>
+                </div>
+                <hr />
+
+        <% }) %>
+        </body>
+   </body>
+</html>
