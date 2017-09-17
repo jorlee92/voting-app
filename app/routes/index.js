@@ -31,16 +31,23 @@ module.exports = function (app, passport) {
 	app.route('/polls/:pollID')
 		.get(function(req, res){
 			var pollID = req.params.pollID;
-			Poll.find({_id: pollID}, function(err, result){
+			Poll.findOne({_id: pollID}, function(err, result){
 				if(err) {
 					//TODO Remove debugging line 
 					res.send(err)
 				}
 				else{
-					res.send(result)
+					res.render(path + '/app/views/poll_single.ejs', {poll: result});
 				}
 			})
 		})
+	app.route('/vote/:pollID/:optionID')
+	.get(function(req, res){
+		var pollID = String(req.params.pollID);
+		var optionID = String(req.params.optionID);
+		Poll.registerVote(pollID, optionID);
+		res.redirect('/polls/' +pollID);
+	})
 	app.route('/create')
 		.post(function(req, res){
 

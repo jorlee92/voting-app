@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <% console.log(poll) %>
+    <title>Poll <%= poll.name %></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body class = "container">
+        <body class = "container">
+            <h1 class = "jumbotron"> Poll <%= poll.name %> </h1>
+            <div class = "row">
+                <div class = "col-4"><h4>Option</h4> </div>
+                <div class = "col-4"><h4>Votes</h4></div>
+                <div class = "col-4"><h4>Vote!</h4></div>
+            </div>
+            <% poll.options.forEach(function(option){ %>
+            
+                <div class = "row">
+                    <div class= "col-4"><%= option.name %></div>
+                    <div class= "col-4"><%= option.votes  %></div>
+                    <a class = "col-4 btn btn-primary" href="/vote/<%= poll._id %>/<%= option._id %>">Click here to Vote</a>
+                </div>
+                <hr />
+            <% }); %>
+
+        </body>
+    </body>
+
+        
