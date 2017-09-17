@@ -11,7 +11,15 @@ module.exports = function (app, passport) {
 		} else {
 			res.redirect('/login');
 		}
-	}	
+	}
+	app.get('/testAppend', function(req, res){
+
+		Poll.addOption("59bdd132b2c2ba324cc87fe7", "Extra Option");
+		res.send("Added!");
+	})
+	app.get('/testList', function(req, res){
+		res.send(JSON.stringify(Poll.listByUserID(1)));
+	})	
 	app.route('/')
 		.get(function (req, res) {
 			if(req.isAuthenticated()){

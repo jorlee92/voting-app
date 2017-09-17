@@ -36,5 +36,27 @@ PollSchema.statics.registerVote = function(id, OptionID){
             }
         })
 }
+PollSchema.statics.addOption = function(pollID, name){
+    Poll.findOneAndUpdate(
+        {"_id": pollID},
+        {$push:{
+            options:{ name: name, votes:0}
+        }}
+    , function(err, result){
+        if (err) console.log(err)
+        else{
+            console.log(result);
+        }
+    })
+}
+PollSchema.statics.listByUserID = function(userID){
+    Poll.find({ownerID: userID },function(err, results){
+        if(err) console.log(err);
+        else{
+            console.log(results);
+            return results;
+        }
+    });
+}
 var Poll = mongoose.model('Poll', PollSchema);
 module.exports = Poll;
