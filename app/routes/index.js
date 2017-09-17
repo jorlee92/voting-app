@@ -1,7 +1,6 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 var User = require('../models/users.js');
 var Poll = require('../models/polls.js');
 module.exports = function (app, passport) {
@@ -12,9 +11,7 @@ module.exports = function (app, passport) {
 		} else {
 			res.redirect('/login');
 		}
-	}
-	var clickHandler = new ClickHandler();
-	
+	}	
 	app.route('/')
 		.get(function (req, res) {
 			if(req.isAuthenticated()){
