@@ -13,12 +13,16 @@ module.exports = function (app, passport) {
 		}
 	}
 	app.get('/testAppend', function(req, res){
-
 		Poll.addOption("59bdd132b2c2ba324cc87fe7", "Extra Option");
 		res.send("Added!");
 	})
 	app.get('/testList', function(req, res){
-		res.send(JSON.stringify(Poll.listByUserID(1)));
+		Poll.listByUserID(1, function(err, results){
+			if(err) console.log('err');
+			else{
+				res.send(results);
+			}
+		})
 	})	
 	app.route('/')
 		.get(function (req, res) {

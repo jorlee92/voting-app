@@ -49,12 +49,11 @@ PollSchema.statics.addOption = function(pollID, name){
         }
     })
 }
-PollSchema.statics.listByUserID = function(userID){
+PollSchema.statics.listByUserID = function(userID, callback){
     Poll.find({ownerID: userID },function(err, results){
         if(err) console.log(err);
         else{
-            console.log(results);
-            return results;
+            callback(err, results);
         }
     });
 }
