@@ -27,30 +27,11 @@ UserSchema.pre('save', function(next){
         next();
     });
 });
-UserSchema.statics.login = function (email, pass, callback){
-    User.findOne({email:email}).exec(function(err, result){
-        if (err) {
-            console.log('Could not search given the input to the login function');
-            return callback(err)
-            
-        }
-        else if (!result){s
-            console.log("User not found :" + email);
-            return callback(err);
-        }
-        else{
-            bcrypt.compare(pass, result.password,function(err, hashMatches){
-                if (err){}
-                console.log("Does the hash match? :" + hashMatches);
-                if(hashMatches){
-                    return(callback(null, result))
-                }
-            })
-            
-        }
-        
-    });
+
+UserSchema.methods.verifyPassword = function(password){
+    return bcrypt.compareSync(password, this.password);
 }
+
 
 
 var User = mongoose.model('User', UserSchema);

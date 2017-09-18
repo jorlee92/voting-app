@@ -12,6 +12,9 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		}
 	}
+	app.post('/login', passport.authenticate('local'), function(req, res) {
+		res.redirect('/');
+	});
 	app.get('/testAppend', function(req, res){
 		Poll.addOption("59bdd132b2c2ba324cc87fe7", "Extra Option");
 		res.send("Added!");
